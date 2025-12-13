@@ -1248,7 +1248,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
                 (set self (this [script]))
                 (ifElse (get condition)
                     (run (get "true case"))
-                    (ifElse (empty (get "else pairs"))
+                    (ifElse (reportListBoolean (get "else pairs") [empty])
                         nil
                         (ifElse (item 1 (item 1 (get "else pairs")))
                             (run (item 2 (item 1 (get "else pairs"))))
@@ -1463,7 +1463,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             code: 'pipe',
             src: `(
                 (prim t reportPipe value functions)
-                (report (ifThen (empty (get functions))
+                (report (ifThen (reportListBoolean (get functions) [empty])
                     (get value)
                     (pipe (call (item 1 (get functions)) (get value)) :
                         (cdr (get functions))))))`
@@ -2143,7 +2143,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             code: 'combinations',
             src: `(
                 (prim t reportCrossproduct lists)
-                (report (ifThen (empty (get lists))
+                (report (ifThen (reportListBoolean (get lists) [empty])
                     (list (list))
                     (append : (map
                         (ring (map (ring
@@ -2182,7 +2182,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
                 (prim t reportMap ring data)
                 (var result implicit?)
                 (set result (list))
-                (set implicit? (empty (attribute "[input names]" (get ring))))
+                (set implicit? (reportListBoolean (attribute "[input names]" (get ring)) [empty]))
                 (warp (for i 1 (data [length] (get data))
                     (add (call (get ring) :
                         (ifThen (get implicit?)
@@ -2208,7 +2208,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
                 (prim t reportKeep ring data)
                 (var result implicit?)
                 (set result (list))
-                (set implicit? (empty (attribute "[input names]" (get ring))))
+                (set implicit? (reportListBoolean (attribute "[input names]" (get ring)) [empty]))
                 (warp (for i 1 (data [length] (get data))
                     (if (call (get ring) :
                         (ifThen (get implicit?)
@@ -2232,7 +2232,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             src: `(
                 (prim t reportFindFirst ring data)
                 (var implicit?)
-                (set implicit? (empty (attribute "[input names]" (get ring))))
+                (set implicit? (reportListBoolean (attribute "[input names]" (get ring)) [empty]))
                 (warp (for i 1 (data [length] (get data))
                     (if (call (get ring) :
                         (ifThen (get implicit?)
@@ -2256,7 +2256,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             src: `(
                 (prim t reportCombine data ring)
                 (if
-                    (empty (get data))
+                    (reportListBoolean (get data) [empty])
                         (report 0)
                     (= (data [length] (get data)) 1)
                         (report (item 1 (get data)))
