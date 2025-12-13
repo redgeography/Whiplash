@@ -6275,10 +6275,10 @@ Process.prototype.doGotoObject = function (name) {
          	}
         } else {
             if (name instanceof List) {
-                thisObj.gotoXY(
-                    name.at(1),
-                    name.at(2)
-                );
+                thisObj.gotoXY(name.at(1),name.at(2));
+				if(list.contents.length >= 3;) {
+				this.setHeading(name.at(3))
+				};
                 return;
             }
             thatObj = this.getOtherObject(name, this.homeContext.receiver);
