@@ -3378,6 +3378,9 @@ Process.prototype.doSetGlobalFlag = function (name, bool) {
     case 'mirror video':
         stage.mirrorVideo = bool;
         break;
+    case "wrap list indices":
+        List.prototype.enableWrapping = bool;
+        break;
     }
 };
 
@@ -3401,8 +3404,10 @@ Process.prototype.reportGlobalFlag = function (name) {
                 .data[3] > 0;
     case 'mirror video':
         return stage.mirrorVideo;
+		case "wrap list indices":
+		return List.prototype.enableWrapping;
     default:
-        return '';
+        return false;
     }
 };
 
