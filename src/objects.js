@@ -2198,6 +2198,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             type: 'reporter',
             category: 'lists',
             spec: '$blitz map %repRing over %l'
+			
         },
         reportKeep: {
             type: 'reporter',
@@ -2273,6 +2274,16 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             category: 'lists',
             spec: '$blitz combine %l using %repRing'
         },
+        reportAtomicSort: {
+            type: "reporter",
+            category: "lists",
+            spec: "sort %l ordering with %predRing"
+		},
+         reportAtomicGroup: {
+            type: "reporter",
+            category: "lists",
+            spec: "group %l by %repRing"
+	      },
         doForEach: {
             type: 'command',
             category: 'lists',
@@ -4124,6 +4135,8 @@ SpriteMorph.prototype.blockTemplates = function (
         blocks.push(block('reportKeep'));
         blocks.push(block('reportFindFirst'));
         blocks.push(block('reportCombine'));
+        blocks.push(block("reportAtomicSort"));
+		blocks.push(block("reportAtomicGroup"));
         blocks.push('-');
         blocks.push(block('doForEach'));
         blocks.push('-');
