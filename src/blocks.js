@@ -373,6 +373,14 @@ SyntaxElementMorph.prototype.labelParts = {
         tags: 'read-only static',
         menu: 'extensionsMenu'
     },
+	"%listflag": {
+        type: "input",
+        tags: "read-only static",
+        menu: {
+            "empty" : ["empty"],
+            "linked" : ["linked"]
+        }
+    },
     '%audio': {
         type: 'input',
         tags: 'read-only static',
@@ -536,14 +544,7 @@ SyntaxElementMorph.prototype.labelParts = {
             'cross product' : ['cross product']
         }
     },
-'%listflag': {
-        type: 'input',
-        tags: 'read-only static',
-        menu: {
-            "empty" : ["empty"],
-            "linked" : ["linked"]
-        }
-    },
+
     '%dim': {
         type: 'input',
         tags: 'numeric',
