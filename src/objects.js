@@ -2273,6 +2273,12 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             category: 'lists',
             spec: '$blitz combine %l using %repRing'
         },
+        reportApplies: {
+            type: "reporter",
+            category: "lists",
+            spec: "%predRing applies to %anyall in %l ?",
+			defaults: [["any"]]
+        },
         reportAtomicSort: {
             type: "reporter",
             category: "lists",
@@ -4138,6 +4144,7 @@ SpriteMorph.prototype.blockTemplates = function (
         blocks.push(block('reportKeep'));
         blocks.push(block('reportFindFirst'));
         blocks.push(block('reportCombine'));
+        blocks.push(block("reportApplies"));
         blocks.push(block("reportAtomicSort"));
 		blocks.push(block("reportAtomicGroup"));
         blocks.push('-');
