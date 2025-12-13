@@ -2046,14 +2046,12 @@ SpriteMorph.prototype.primitiveBlocks = function () {
                         (report (bool t)))))
                 (report (bool f)))`
         },
-        reportListIsEmpty: {
+        reportListBoolean: {
             type: 'predicate',
             category: 'lists',
-            spec: 'is %l empty?',
-            code: 'empty',
-            src: `(
-                (prim t reportListIsEmpty data)
-                (report (= (get data) (list))))`
+            spec: 'is %l %listflag?',
+			defaults: [null,["empty"]]
+
         },
         reportListIndex: {
             type: 'reporter',
