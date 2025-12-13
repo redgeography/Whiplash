@@ -844,7 +844,8 @@ SyntaxElementMorph.prototype.labelParts = {
             'flat line ends' : ['flat line ends'],
             'log pen vectors' : ['log pen vectors'],
             'video capture' : ['video capture'],
-            'mirror video' : ['mirror video']
+            'mirror video' : ['mirror video'],
+            "wrap list indices" : ["wrap list indices"]
         }
     },
     '%typ': {
