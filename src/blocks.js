@@ -536,6 +536,14 @@ SyntaxElementMorph.prototype.labelParts = {
             'cross product' : ['cross product']
         }
     },
+'%listflag': {
+        type: 'input',
+        tags: 'read-only static',
+        menu: {
+            "empty" : ["empty"],
+            "linked" : ["linked"]
+        }
+    },
     '%dim': {
         type: 'input',
         tags: 'numeric',
