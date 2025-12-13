@@ -857,8 +857,8 @@ SyntaxElementMorph.prototype.labelParts = {
         type: 'input',
         tags: 'read-only static',
         menu: {
-			any: ["any"],
-			all: ["all \n"]
+			any: ["any\n"],
+			all: ["all"]
 		}
     },
     '%mapValue': {
