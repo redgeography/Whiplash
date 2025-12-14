@@ -4070,6 +4070,8 @@ SpriteMorph.prototype.blockTemplates = function (
         blocks.push(block('reportUnicodeAsLetter'));
         blocks.push('-');
         blocks.push(block('reportIsA'));
+		blocks.push(block("reportTypeOf"));
+		blocks.push("-")
         blocks.push(block('reportVariadicIsIdentical'));
 
         if (Process.prototype.enableJS) {
@@ -4084,7 +4086,6 @@ SpriteMorph.prototype.blockTemplates = function (
             blocks.push('-');
             blocks.push(this.devModeText());
             blocks.push('-');
-            blocks.push(block('reportTypeOf'));
             blocks.push(block('reportTextFunction'));
         }
 
