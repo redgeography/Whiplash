@@ -857,7 +857,7 @@ SyntaxElementMorph.prototype.labelParts = {
         type: 'input',
         tags: 'read-only static',
         menu: {
-			any: ["any\n"],
+			any: "any",
 			all: ["all"]
 		}
     },
