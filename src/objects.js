@@ -1760,6 +1760,13 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             alias: 'max',
             code: 'max'
         },
+        reportClamp: {
+            type: "reporter",
+            category: "operators",
+            spec: "clamp %n from %n to %n,
+			src: `( (prim t reportClamp n min max)
+			(report (max (min (get n) (get min) ) (get max) ) ) )`
+        },
         reportRandom: {
             type: 'reporter',
             category: 'operators',
@@ -3053,7 +3060,9 @@ SpriteMorph.prototype.blockAlternatives = {
     receiveConditionEvent: ['receiveCondition'],
     doRun: ['fork'],
     fork: ['doRun'],
-
+    reportBlockAttribute: ["doSetBlockAttribute"],
+	doSetBlockAttribute: ["reportBlockAttribute"],
+	
     // sensing:
     doAsk: ['bubble', 'doThink', 'doSayFor', 'doThinkFor'],
     getLastAnswer: ['getTimer'],
@@ -3080,16 +3089,16 @@ SpriteMorph.prototype.blockAlternatives = {
         'reportVariadicMin', 'reportVariadicMax'],
     reportModulus: ['reportAtan2', 'reportDifference', 'reportVariadicProduct',
         'reportVariadicSum','reportQuotient', 'reportPower',
-        'reportVariadicMin', 'reportVariadicMax'],
+        'reportVariadicMin', 'reportVariadicMax',"reportClamp"],
     reportAtan2: ['reportModulus', 'reportDifference', 'reportVariadicProduct',
         'reportVariadicSum','reportQuotient', 'reportPower',
         'reportVariadicMin', 'reportVariadicMax'],
     reportVariadicMin: ['reportVariadicMax', 'reportVariadicSum',
         'reportDifference', 'reportVariadicProduct', 'reportQuotient',
-        'reportPower', 'reportModulus', 'reportAtan2'],
+        'reportPower', 'reportModulus', 'reportAtan2',"reportClamp"],
     reportVariadicMax: ['reportVariadicMin', 'reportVariadicSum',
         'reportDifference', 'reportVariadicProduct', 'reportQuotient',
-        'reportPower', 'reportModulus', 'reportAtan2'],
+        'reportPower', 'reportModulus', 'reportAtan2',"reportClamp"],
     reportVariadicLessThan: ['reportVariadicLessThanOrEquals',
         'reportVariadicEquals', 'reportVariadicIsIdentical',
         'reportVariadicNotEquals', 'reportVariadicGreaterThan',
