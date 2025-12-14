@@ -2508,7 +2508,12 @@ Process.prototype.reportRDC = function (list) {
 	let result = new List(list.itemsArray().slice());
 	result.remove(list.contents.length);
 	return result;
-	
+};
+Process.prototype.reportRoundRobin = function(list){
+	if(list.isEmpty()){
+	return new List;
+	};
+	return this.reportSNOC(list.cdr(),list.at(1));
 };
 // Process - other basic list accessors
 Process.prototype.reportListAttribute = function (choice, list) {
