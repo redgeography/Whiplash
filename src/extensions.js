@@ -307,6 +307,15 @@ SnapExtensions.primitives.set(
             block.definition.isBootstrapped();
     }
 );
+SnapExtensions.primitives.set(
+    "snap_reify(expression)",
+    function (expression) {
+        if (!(expression instanceof BlockMorph)){
+        throw new Error("expecting a expression but getting a " + Process.prototype.reportTypeOf(expression));
+        }
+        return script.reify();
+    }
+);
 
 SnapExtensions.primitives.set(
     'snap_block_selectors',
