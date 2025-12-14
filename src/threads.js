@@ -2510,6 +2510,7 @@ Process.prototype.reportRDC = function (list) {
 	return result;
 };
 Process.prototype.reportRoundRobin = function(list){
+	this.assertType(list, "list);
 	if(list.isEmpty()){
 	return new List;
 	};
