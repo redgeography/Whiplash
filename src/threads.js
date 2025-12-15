@@ -4009,7 +4009,19 @@ Process.prototype.reportListAggregation = function (list, selector) {
     }
     return result;
 };
-
+Process.prototype.reportMmap = function (fn, lsts) {
+	// Zip - Apply a function for the first, second, third, etc. item from each of the input lists
+	// to combine them in 1 list
+	// if the reporter uses formal parameters instead of implicit empty slots there are 3 additional optional parameters:
+	// #1...#n - each element from the list
+	// > #n - optional | index
+	// > > #n - optional | source list
+	// > > > #n - optional - source columns
+this.assertType(lsts, "list");
+let cols = lsts.columns();
+let implicit = fn.inputs.length === 0;
+return new List(cols.itemsArray().map((element, index) => invoke(fn, implicit ? element : new List([...element.itemsArray(), index + 1, lsts, cols]))));
+}
 Process.prototype.canRunOptimizedForCombine = function (aContext) {
     // private - used by reportCombine to check for optimizable
     // special cases
