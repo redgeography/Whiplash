@@ -2311,6 +2311,27 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             spec: "%predRing applies to %anyall in %l ?",
 			defaults: [null,"any"]
         },
+		reportMmap: {
+            type: "reporter",
+            category: "lists",
+            spec: "multimap %repRing over %lsts",
+			src: `(
+    (prim t reportMmap ring lists) 
+    (report 
+        (map 
+            (ring 
+                (call 
+                    (get ring) : 
+                    (get value)
+                ) value
+            ) 
+            (data [columns] 
+                (get lists)
+            )
+        )
+    )
+)`
+        },
         reportAtomicSort: {
             type: "reporter",
             category: "lists",
@@ -4181,8 +4202,9 @@ SpriteMorph.prototype.blockTemplates = function (
         blocks.push(block('reportFindFirst'));
         blocks.push(block('reportCombine'));
         blocks.push(block("reportApplies"));
+        blocks.push(block("reportMmap"));
         blocks.push(block("reportAtomicSort"));
-		blocks.push(block("reportAtomicGroup"));
+        blocks.push(block("reportAtomicGroup"));
         blocks.push('-');
         blocks.push(block('doForEach'));
         blocks.push('-');
