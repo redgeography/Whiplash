@@ -4018,6 +4018,7 @@ Process.prototype.reportMmap = function (fn, lsts) {
 	// > > #n - optional | source list
 	// > > > #n - optional - source columns
 this.assertType(lsts, "list");
+lsts.itemsArray().forEach((element) => this.assertType(element, "list"));
 let cols = lsts.columns();
 let implicit = fn.inputs.length === 0;
 return new List(cols.itemsArray().map((element, index) => invoke(fn, implicit ? element : new List([...element.itemsArray(), index + 1, lsts, cols]))));
