@@ -1300,7 +1300,7 @@ SyntaxElementMorph.prototype.labelParts = {
 	"%lsts": {
         type: "multi",
         slots: "%l",
-        defaults: 2,
+        defaults: 0,
 		min: 1
     },
     '%nums': {
