@@ -342,7 +342,7 @@
   {
     "fileName": "list-utilities.xml",
     "name": "List utilities",
-    "description": "Some standard functions on lists (reverse, sort, etc.)",
+    "description": "Some standard functions on lists (partition, printable, etc.)",
     "translations": {
       "ca": {
         "name": "Utilitats per a llistes",
