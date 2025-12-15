@@ -3961,7 +3961,7 @@ Process.prototype.reportCombine = function (list, reporter) {
     return this.evaluate(reporter, new List(parms));
 };
 Process.prototype.reportApplies = function(fn, type, list) {
-// Every & Some - report if a predicate satifies any or all items in a list respectively.
+// Some & Every - report if a predicate satifies any or all items in a list respectively.
  // if the predicate uses formal parameters instead of implicit empty slots there are 2 additional optional parameters:
     // #1 - element
     // #2 - optional | index
