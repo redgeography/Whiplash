@@ -2317,17 +2317,39 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             spec: "multimap %repRing over %lsts",
 			src: `(
     (prim t reportMmap ring lists) 
+    (var implicit? columns) 
+    (set implicit? 
+        (reportListBoolean 
+            (attribute "[input names]" 
+                (get ring)
+            ) [empty]
+        )
+    ) 
+    (set columns 
+        (data [columns] 
+            (get lists)
+        )
+    ) 
     (report 
         (map 
             (ring 
                 (call 
                     (get ring) : 
-                    (get value)
-                ) value
+                    (ifThen 
+                        (get implicit?) 
+                        (get value) 
+                        (append 
+                            (get value) 
+                            (list 
+                                (get index) 
+                                (get list) 
+                                (get cols)
+                            )
+                        )
+                    )
+                ) value index cols
             ) 
-            (data [columns] 
-                (get lists)
-            )
+            (get columns)
         )
     )
 )`
