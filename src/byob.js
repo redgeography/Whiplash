@@ -4117,7 +4117,7 @@ BlockLabelFragment.prototype.defTemplateSpecFragment = function () {
     } else if (this.type === '%clr') {
         suff = ' $pipette';
     } else if (contains(
-            ['%cmdRing', '%repRing', '%predRing', '%anyUE', '%boolUE'],
+            ['%cmdRing', '%repRing', '%predRing', '%anyUE', '%boolUE',"%listUE"],
             this.type
         )) {
         suff = ' \u03BB';
