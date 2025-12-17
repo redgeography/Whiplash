@@ -1258,7 +1258,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
                         (ifElse (item 1 (item 1 (get "else pairs")))
                             (run (item 2 (item 1 (get "else pairs"))))
                             (run (get self) (bool f) nil
-                                (cdr (get "else pairs")))))))`
+                                (reportAllButOfList [first] (get "else pairs")))))))`
         },
         doIfElse: {
             type: 'command',
@@ -1471,7 +1471,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
                 (report (ifThen (reportListBoolean (get functions) [empty])
                     (get value)
                     (pipe (call (item 1 (get functions)) (get value)) :
-                        (cdr (get functions))))))`
+                        (reportAllButOfList [first] (get functions))))))`
         },
 
         // Sensing
@@ -2015,16 +2015,11 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             defaults: [1],
             code: 'item'
         },
-        reportCDR: {
-            type: 'reporter',
-            category: 'lists',
-            spec: 'all but first of %l',
-            code: 'cdr'
-        },
-        reportRDC: {
+        reportAllButOfList: {
             type: "reporter",
             category: "lists",
-            spec: "all but last of %l"
+            spec: "all but %cdridx of %l",
+			defaults: [["first"]]
         },
        reportSNOC: {
             type: "reporter",
@@ -2034,7 +2029,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
 		reportInsertedInList: {
 			type: "reporter",
 			category: "lists",
-			spec: "%s inserted at %idx of %l",
+			spec: "%s inserted at %idn of %l",
 			defaults: ["thing",1]
 		},
         reportReplacedInList: {
@@ -2059,7 +2054,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
     ) 
     (report 
         (reportSNOC 
-            (cdr 
+            (reportAllButOfList [first]
                 (get list)
             ) 
             (item 1 
@@ -2197,7 +2192,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
                     (append : (map
                         (ring (map (ring
                             (cons (get first) nil))
-                            (combinations : (cdr (get lists)))) first)
+                            (combinations : (reportAllButOfList [first] (get lists)))) first)
                         (item 1 (get lists)))))))`
         },
         reportTranspose: { // deprecated
@@ -2313,7 +2308,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
                 (report (call (get ring)
                     (item 1 (get data))
                     (call (this [script])
-                        (cdr (get data))
+                        (reportAllButOfList [first] (get data))
                         (get ring)))))`
         },
         reportAtomicCombine: {
@@ -2984,6 +2979,11 @@ SpriteMorph.prototype.initBlockMigrations = function () {
             selector: 'reportTextAttribute',
             inputs: [['length']],
             offset: 1
+		},
+		reportCDR: {
+		selector: "reportAllButOfList",
+		inputs: [["first"]],
+		offset: 1
         }
     };
 };
@@ -4231,12 +4231,12 @@ SpriteMorph.prototype.blockTemplates = function (
         blocks.push('-');
         blocks.push(block('reportCONS'));
         blocks.push(block('reportListItem'));
-        blocks.push(block('reportCDR'));
+        blocks.push(block("reportAllButOfList"));
         blocks.push('-');
         blocks.push(block('reportListAttribute'));
         blocks.push(block('reportListIndex'));
         blocks.push(block('reportListContainsItem'));
-        blocks.push(block('reportListIsEmpty'));
+        blocks.push(block("reportListBoolean"));
         blocks.push('-');
         blocks.push(block('reportMap'));
         blocks.push(block('reportKeep'));
@@ -11786,17 +11786,21 @@ StageMorph.prototype.blockTemplates = function (
         blocks.push('-');
         blocks.push(block('reportCONS'));
         blocks.push(block('reportListItem'));
-        blocks.push(block('reportCDR'));
+        blocks.push(block("reportAllButOfList"));
         blocks.push('-');
         blocks.push(block('reportListAttribute'));
         blocks.push(block('reportListIndex'));
         blocks.push(block('reportListContainsItem'));
-        blocks.push(block('reportListIsEmpty'));
+        blocks.push(block("reportListBoolean"));
         blocks.push('-');
         blocks.push(block('reportMap'));
         blocks.push(block('reportKeep'));
         blocks.push(block('reportFindFirst'));
         blocks.push(block('reportCombine'));
+        blocks.push(block("reportApplies"));
+        blocks.push(block("reportMmap"));
+        blocks.push(block("reportAtomicSort"));
+        blocks.push(block("reportAtomicGroup"));
         blocks.push('-');
         blocks.push(block('doForEach'));
         blocks.push('-');
@@ -11808,6 +11812,13 @@ StageMorph.prototype.blockTemplates = function (
         blocks.push(block('reportConcatenatedLists'));
         blocks.push(block('reportReshape'));
         blocks.push(block('reportCrossproduct'));
+		blocks.push("-");
+		blocks.push(block("reportSNOC"));
+        blocks.push(block("reportRDC"));
+        blocks.push(block("reportRoundRobin"));
+	    blocks.push("-");
+		blocks.push(block("reportInsertedInList"));
+	    blocks.push(block("reportReplacedInList"));
 
         if (SpriteMorph.prototype.showingExtensions) {
             blocks.push('=');
