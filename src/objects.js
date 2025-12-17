@@ -2984,6 +2984,11 @@ SpriteMorph.prototype.initBlockMigrations = function () {
 		selector: "reportAllButOfList",
 		inputs: [["first"]],
 		offset: 1
+        },
+		reportRDC: {
+		selector: "reportAllButOfList",
+		inputs: [["last"]],
+		offset: 1
         }
     };
 };
@@ -4259,7 +4264,6 @@ SpriteMorph.prototype.blockTemplates = function (
         blocks.push(block('reportCrossproduct'));
         blocks.push("-");
 		blocks.push(block("reportSNOC"));
-        blocks.push(block("reportRDC"));
         blocks.push(block("reportRoundRobin"));
 	    blocks.push("-");
 		blocks.push(block("reportInsertedInList"));
@@ -11814,7 +11818,6 @@ StageMorph.prototype.blockTemplates = function (
         blocks.push(block('reportCrossproduct'));
 		blocks.push("-");
 		blocks.push(block("reportSNOC"));
-        blocks.push(block("reportRDC"));
         blocks.push(block("reportRoundRobin"));
 	    blocks.push("-");
 		blocks.push(block("reportInsertedInList"));
