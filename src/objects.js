@@ -2034,12 +2034,14 @@ SpriteMorph.prototype.primitiveBlocks = function () {
 		reportInsertedInList: {
 			type: "reporter",
 			category: "lists",
-			spec: "%s inserted at %idx of %l"
+			spec: "%s inserted at %idx of %l",
+			defaults: ["thing",1]
 		},
         reportReplacedInList: {
 			type: "reporter",
 			category: "lists",
-			spec: "%s replacing %idx of %l"
+			spec: "%s replacing %idx of %l",
+			defaults: ["thing",1]
 		},
       reportRoundRobin: {
             type: "reporter",
