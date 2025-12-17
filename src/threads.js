@@ -8172,7 +8172,9 @@ Process.prototype.doSetInstrument = function (num) {
 };
 
 // Process image processing primitives
-
+Process.prototype.reportInstrument = function () {
+	return this.instrument ?? 1;
+}
 Process.prototype.reportGetImageAttribute = function (choice, name) {
     if (this.enableHyperOps) {
         if (name instanceof List) {
