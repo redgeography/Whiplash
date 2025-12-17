@@ -386,6 +386,18 @@ SyntaxElementMorph.prototype.labelParts = {
             "linked" : ["linked"]
         }
     },
+	"%cdridx": {
+		type: "input",
+		tags: "alphanum",
+		menu: {
+			first: ["first"],
+			"1" : 1,
+            last : ["last"],
+            random : ["random"],
+            '~' : null,
+            parent : ["parent"]
+			  }
+	},
     '%audio': {
         type: 'input',
         tags: 'read-only static',
@@ -497,6 +509,16 @@ SyntaxElementMorph.prototype.labelParts = {
             parent : ['parent']
         }
     },
+	"%idn": {
+		type: "input",
+		tags: "alphanum",
+		menu: {
+            "1" : 1,
+            random : ["random"],
+            '~' : null,
+            parent : ["parent"]
+        }
+	},
     '%ix': {
         type: 'input',
         tags: 'numeric',
