@@ -827,6 +827,11 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             defaults: [1],
             code: 'instrument'
         },
+		reportInstrument: {
+            type: "reporter",
+            category: "sound",
+            spec: "instrument",
+        },
         doChangeTempo: {
             type: 'command',
             category: 'sound',
@@ -3926,6 +3931,8 @@ SpriteMorph.prototype.blockTemplates = function (
         blocks.push(block('doRest'));
         blocks.push(block('doPlayNote'));
         blocks.push(block('doSetInstrument'));
+        blocks.push(watcherToggle("reportInstrument"));
+		blocks.push(block("reportInstrument"));
         blocks.push('-');
         blocks.push(block('doChangeTempo'));
         blocks.push(block('doSetTempo'));
