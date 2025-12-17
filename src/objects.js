@@ -2031,6 +2031,16 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             category: "lists",
             spec: "%l followed by %s"
         },
+		reportInsertedInList: {
+			type: "reporter",
+			category: "lists",
+			spec: "%s inserted at %idx of %l"
+		},
+        reportReplacedInList: {
+			type: "reporter",
+			category: "lists",
+			spec: "%s replacing %idx of %l"
+		},
       reportRoundRobin: {
             type: "reporter",
             category: "lists",
@@ -4246,9 +4256,12 @@ SpriteMorph.prototype.blockTemplates = function (
         blocks.push(block('reportReshape'));
         blocks.push(block('reportCrossproduct'));
         blocks.push("-");
-		blocks.push(block("reportSNOC"))
-        blocks.push(block("reportRDC"))
-        blocks.push(block("reportRoundRobin"))
+		blocks.push(block("reportSNOC"));
+        blocks.push(block("reportRDC"));
+        blocks.push(block("reportRoundRobin"));
+	    blocks.push("-");
+		blocks.push(block("reportInsertedInList"));
+	    blocks.push(block("reportReplacedInList"));
 
         if (SpriteMorph.prototype.showingExtensions) {
             blocks.push('=');
