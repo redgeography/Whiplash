@@ -2351,16 +2351,22 @@ Process.prototype.doDeleteFromList = function (index, list) {
     if (list.type) {
         list = this.shadowListAttribute(list);
     }
-    if (this.inputOption(index) === 'all') {
-        return list.clear();
-    }
-    if (index === '') {
+	if (index instanceof Array) {
+		switch(index[0]){
+			case "all":
+			return list.clear();
+			case "last":
+			idx = list.length();
+			break;
+			case "parent":
+			idx = "..."
+			break;
+			case "random":
+			idx = this.reportBasicRandom(1,list.length())l
+			break;
+			}
+    if (index === "") {
         return null;
-    }
-    if (this.inputOption(index) === 'last') {
-        idx = list.length();
-    } else if (this.inputOption(index) === 'parent') {
-        idx = '...';
     }
     list.forget(idx);
 };
@@ -2382,8 +2388,6 @@ Process.prototype.doInsertInList = function (element, index, list) {
             idx = list.length() + 1;
         } else if (index[0] === 'parent') {
             idx = '...';
-        } else {
-            idx = list.length() + 1;
         }
     }
     if (parseFloat(idx) !== +idx) { // treat as alphanumerical index
