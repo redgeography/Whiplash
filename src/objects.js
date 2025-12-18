@@ -2207,6 +2207,69 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             defaults: [null, [4, 3]],
             code: 'reshape'
         },
+		reportResize: {
+            type: "reporter",
+            category: "lists",
+            spec: "resize %s to %n",
+            defaults: [null, 12]
+			src: `(
+    (prim t reportResize value length) 
+    (if 
+        (not 
+            (is 
+                (get value) [list]
+            )
+        ) 
+        (set value 
+            (list 
+                (get value)
+            )
+        )
+    ) 
+    (var result) 
+    (set result 
+        (list)
+    ) 
+    (if 
+        (> 
+            (get length) 0
+        ) 
+        (warp 
+            (for i 1 
+                (get length) 
+                (add 
+                    (item 
+                        (ifThen 
+                            (= 
+                                (mod 
+                                    (get i) 
+                                    (data [length] 
+                                        (get value)
+                                    )
+                                ) 0
+                            ) 
+                            (data [length] 
+                                (get value)
+                            ) 
+                            (mod 
+                                (get i) 
+                                (data [length] 
+                                    (get value)
+                                )
+                            )
+                        ) 
+                        (get value)
+                    ) 
+                    (get result)
+                )
+            )
+        )
+    ) 
+    (report 
+        (get result)
+    )
+)`
+        },
     /*
         reportSlice: { // currently not in use
             type: 'reporter',
@@ -4259,8 +4322,10 @@ SpriteMorph.prototype.blockTemplates = function (
         blocks.push(block('doInsertInList'));
         blocks.push(block('doReplaceInList'));
         blocks.push('-');
+		blocks.push(block("reportReshape"));
+		blocks.push(block("reportResize"))
+		blocks.push("-");
         blocks.push(block('reportConcatenatedLists'));
-        blocks.push(block('reportReshape'));
         blocks.push(block('reportCrossproduct'));
         blocks.push("-");
 		blocks.push(block("reportSNOC"));
@@ -11734,6 +11799,8 @@ StageMorph.prototype.blockTemplates = function (
         blocks.push(block('reportUnicodeAsLetter'));
         blocks.push('-');
         blocks.push(block('reportIsA'));
+		blocks.push(block("reportTypeOf"));
+		blocks.push("-");
         blocks.push(block('reportVariadicIsIdentical'));
 
         if (Process.prototype.enableJS) { // (Process.prototype.enableJS) {
@@ -11813,8 +11880,10 @@ StageMorph.prototype.blockTemplates = function (
         blocks.push(block('doInsertInList'));
         blocks.push(block('doReplaceInList'));
         blocks.push('-');
+		blocks.push(block("reportReshape"));
+		blocks.push(block("reportResize"))
+		blocks.push("-");
         blocks.push(block('reportConcatenatedLists'));
-        blocks.push(block('reportReshape'));
         blocks.push(block('reportCrossproduct'));
 		blocks.push("-");
 		blocks.push(block("reportSNOC"));
