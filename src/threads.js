@@ -2362,15 +2362,15 @@ Process.prototype.doDeleteFromList = function (index, list) {
 			idx = "..."
 			break;
 			case "random":
-			idx = this.reportBasicRandom(1,list.length())l
+			idx = this.reportBasicRandom(1,list.length());
 			break;
-			}
+		}
+}
     if (index === "") {
         return null;
     }
     list.forget(idx);
 };
-
 Process.prototype.doInsertInList = function (element, index, list) {
     var idx = index;
     this.assertType(list, 'list');
