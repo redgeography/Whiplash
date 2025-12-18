@@ -127,6 +127,7 @@ var ListWatcherMorph;
     reversed()              - answer a reversed shallow copy of the list
     ssum()                  - answer the sum of all number leafs
     reshape()               - answer a new list formatted to the given dimensions.
+    resize()               - answer a new list formatted to just the given length.
     crossproduct()          - answer a new list of all possible sublist tuples
     query()                 - answer a part of a list or multidimensionel struct
     slice()                 - same as query() turning negative indices into slices
