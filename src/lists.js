@@ -867,8 +867,10 @@ List.prototype.resize = function(length){
     let array = this.itemsArray();
     let result = new List;
     length = +length;
+    if (length > 0) {
       for (let i = 0; i < length; i++) {
           result.add(array[i % array.length])
+      }
     }
     return result;
 }
