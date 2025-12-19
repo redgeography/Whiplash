@@ -1745,6 +1745,11 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             spec: '%n mod %n',
             code: 'mod'
         },
+		reportRemainder: {
+			type: "reporter",
+			category: "operators",
+			spec: "%n rem %n"
+		},
         reportAtan2: {
             type: 'reporter',
             category: 'operators',
@@ -3241,7 +3246,7 @@ SpriteMorph.prototype.blockAlternatives = {
     reportPower: ['reportDifference', 'reportVariadicProduct',
         'reportVariadicSum', 'reportQuotient', 'reportModulus', 'reportAtan2',
         'reportVariadicMin', 'reportVariadicMax'],
-    reportModulus: ['reportAtan2', 'reportDifference', 'reportVariadicProduct',
+    reportModulus: ["reportRemainder",'reportAtan2', 'reportDifference', 'reportVariadicProduct',
         'reportVariadicSum','reportQuotient', 'reportPower',
         'reportVariadicMin', 'reportVariadicMax',"reportClamp"],
     reportAtan2: ['reportModulus', 'reportDifference', 'reportVariadicProduct',
