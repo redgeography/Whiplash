@@ -4323,7 +4323,7 @@ SpriteMorph.prototype.blockTemplates = function (
         blocks.push(block('doReplaceInList'));
         blocks.push('-');
 		blocks.push(block("reportReshape"));
-		blocks.push(block("reportResize"))
+		blocks.push(block("reportResize"));
 		blocks.push("-");
         blocks.push(block('reportConcatenatedLists'));
         blocks.push(block('reportCrossproduct'));
@@ -11881,7 +11881,7 @@ StageMorph.prototype.blockTemplates = function (
         blocks.push(block('doReplaceInList'));
         blocks.push('-');
 		blocks.push(block("reportReshape"));
-		blocks.push(block("reportResize"))
+		blocks.push(block("reportResize"));
 		blocks.push("-");
         blocks.push(block('reportConcatenatedLists'));
         blocks.push(block('reportCrossproduct'));
