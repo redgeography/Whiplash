@@ -2211,7 +2211,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             type: "reporter",
             category: "lists",
             spec: "resize %s to %n",
-            defaults: [null, 12]
+            defaults: [null, 12],
 			src: `(
     (prim t reportResize value length) 
     (if 
