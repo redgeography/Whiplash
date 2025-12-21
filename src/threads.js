@@ -5835,7 +5835,7 @@ Process.prototype.reportBasicTextSplit = function (string, delimiter) {
     }
     str = isNil(string) ? '' : string.toString();
     if (delimiter instanceof Array) {
-	switch (delimiter[0])) {
+	switch (delimiter[0]) {
     case 'line':
         // Unicode compliant line splitting (platform independent)
         // http://www.unicode.org/reports/tr18/#Line_Boundaries
