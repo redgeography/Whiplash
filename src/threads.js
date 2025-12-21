@@ -11159,3 +11159,4 @@ JSCompiler.prototype.escape = string => {
     }
     return escaped;
 };
+}
