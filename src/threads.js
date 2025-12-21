@@ -5866,6 +5866,7 @@ Process.prototype.reportBasicTextSplit = function (string, delimiter) {
             del = new RegExp(
                 del.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'),
                 "ig"
+			)
 	}
     return new List(str.split(del));
 };
