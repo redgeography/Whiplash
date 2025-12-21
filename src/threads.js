@@ -5797,7 +5797,7 @@ Process.prototype.reportBasicUnicodeAsLetter = function (num) {
 };
 
 Process.prototype.reportTextSplit = function (string, delimiter) {
-    if (this.inputOption(delimiter) === 'blocks') {
+    if ((delimiter instanceof Array) && (delimeter[0] === "blocks")) {
         if (isString(string) && '(;'.includes(string.trim()[0])) {
             return this.parseCode(string);
         }
@@ -5834,7 +5834,8 @@ Process.prototype.reportBasicTextSplit = function (string, delimiter) {
         );
     }
     str = isNil(string) ? '' : string.toString();
-    switch (this.inputOption(delimiter)) {
+    if (delimiter instanceof Array) {
+	switch (delimiter[0])) {
     case 'line':
         // Unicode compliant line splitting (platform independent)
         // http://www.unicode.org/reports/tr18/#Line_Boundaries
@@ -5858,15 +5859,14 @@ Process.prototype.reportBasicTextSplit = function (string, delimiter) {
         return this.parseCSV(string);
     case 'json':
         return this.parseJSON(string);
-    default:
-        del = delimiter.toString();
+    }
+	} else {
+  del = delimiter.toString();
         if (this.isCaseInsensitive) {
             del = new RegExp(
                 del.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'),
                 "ig"
-            );
-        }
-    }
+	}
     return new List(str.split(del));
 };
 
