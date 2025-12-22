@@ -5869,6 +5869,8 @@ Process.prototype.reportBasicTextSplit = function (string, delimiter) {
 			)
 	}
     return new List(str.split(del));
+
+	}
 };
 
 // Process - parsing primitives
@@ -11159,4 +11161,3 @@ JSCompiler.prototype.escape = string => {
     }
     return escaped;
 };
-}
