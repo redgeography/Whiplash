@@ -5797,7 +5797,7 @@ Process.prototype.reportBasicUnicodeAsLetter = function (num) {
 };
 
 Process.prototype.reportTextSplit = function (string, delimiter) {
-    if ((delimiter instanceof Array) && (delimeter[0] === "blocks")) {
+    if ((delimiter instanceof Array) && (delimiter[0] === "blocks")) {
         if (isString(string) && '(;'.includes(string.trim()[0])) {
             return this.parseCode(string);
         }
@@ -5833,7 +5833,7 @@ Process.prototype.reportBasicTextSplit = function (string, delimiter) {
             localize(delType)
         );
     }
-    str = isNil(string) ? '' : string.toString();
+    str = isNil(string) ? "" : string.toString();
     if (delimiter instanceof Array) {
 	switch (delimiter[0]) {
     case 'line':
