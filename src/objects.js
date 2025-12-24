@@ -1717,7 +1717,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
         reportQuotient: {
             type: 'reporter',
             category: 'operators',
-            spec: "'%n ÷ %n", 
+            spec: "%n ÷ %n", 
             code: '/'
         },
         reportRound: {
