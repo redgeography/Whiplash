@@ -2385,6 +2385,16 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             category: 'lists',
             spec: '$blitz combine %l using %repRing'
         },
+		reportAtomicSort: {
+            type: "reporter",
+            category: "lists",
+            spec: "$blitz sort %l ordering with %predRing"
+		},
+         reportAtomicGroup: {
+            type: "reporter",
+            category: "lists",
+            spec: "$blitz group %l by %repRing"
+	      },
         reportApplies: {
             type: "predicate",
             category: "lists",
@@ -2434,16 +2444,16 @@ SpriteMorph.prototype.primitiveBlocks = function () {
     )
 )`
         },
-        reportAtomicSort: {
-            type: "reporter",
-            category: "lists",
-            spec: "sort %l ordering with %predRing"
+		reportGroup: {
+		type: "reporter",
+		category: "lists",
+		spec: "group %l by %repRing
 		},
-         reportAtomicGroup: {
-            type: "reporter",
-            category: "lists",
-            spec: "group %l by %repRing"
-	      },
+		reportSort: {
+		type: "reporter",
+		category: "lists",
+		spec: "sort %l ordering with %repRing"
+		},
         doForEach: {
             type: 'command',
             category: 'lists',
@@ -4317,8 +4327,8 @@ SpriteMorph.prototype.blockTemplates = function (
         blocks.push(block('reportCombine'));
         blocks.push(block("reportApplies"));
         blocks.push(block("reportMmap"));
-        blocks.push(block("reportAtomicSort"));
-        blocks.push(block("reportAtomicGroup"));
+        blocks.push(block("reportSort"));
+        blocks.push(block("reportGroup"));
         blocks.push('-');
         blocks.push(block('doForEach'));
         blocks.push('-');
@@ -11875,8 +11885,8 @@ StageMorph.prototype.blockTemplates = function (
         blocks.push(block('reportCombine'));
         blocks.push(block("reportApplies"));
         blocks.push(block("reportMmap"));
-        blocks.push(block("reportAtomicSort"));
-        blocks.push(block("reportAtomicGroup"));
+        blocks.push(block("reportSort"));
+        blocks.push(block("reportGroup"));
         blocks.push('-');
         blocks.push(block('doForEach'));
         blocks.push('-');
