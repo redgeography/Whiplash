@@ -3685,7 +3685,7 @@ BlockMorph.prototype.userMenu = function () {
             reportKeep : 'reportAtomicKeep',
             reportFindFirst: 'reportAtomicFindFirst',
             reportCombine : 'reportAtomicCombine',
-			reportSort: : "reportAtomicSort",
+			reportSort : "reportAtomicSort",
 			reportGroup: "reportAtomicGroup"
         };
         menu.addItem(
