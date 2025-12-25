@@ -4143,7 +4143,7 @@ Process.prototype.reportSort = function (list, fn) {
 	// #2 - b
 	this.assertType(list, "list");
 	this.assertRing(fn);
-	return new List(list.itemsArray().sort((a,b) => invoke(fn, new List([a,b]),null,null,null,null,proc.capture(fn)) === true ? -1 : 1))
+	return new List(list.itemsArray().toSorted((a,b) => invoke(fn, new List([a,b]),null,null,null,null,proc.capture(fn)) === true ? -1 : 1))
 }
 Process.prototype.reportPipe = function (value, reporterList) {
     // Pipe - answer an aggregation of channeling an initial value
@@ -10086,7 +10086,7 @@ Process.prototype.reportAtomicSort = function (list, reporter) {
 
     // iterate over the data in a single frame:
 	return new List(
-  		list.itemsArray().slice().sort((a, b) =>
+  		list.itemsArray().toSorted((a, b) =>
             invoke(
                 func,
                 new List([a, b]),
@@ -10095,7 +10095,7 @@ Process.prototype.reportAtomicSort = function (list, reporter) {
                 null,
                 null,
                 this.capture(reporter) // process
-            ) ? -1 : 1
+            ) === true ? -1 : 1
         )
     );
 };
