@@ -4113,7 +4113,7 @@ Process.prototype.emptyListValueForCombine = function (selector) {
         return 0;
     }
 };
-Process.prototype.reportGroup = function (list,func) {
+Process.prototype.reportGroup = function (list,fn) {
 	//Group - Group all items of a list by a key
 	// such that it's a list of lists:
 	//		the first item of the list represents a unique value
