@@ -3676,7 +3676,7 @@ BlockMorph.prototype.userMenu = function () {
     // - vector pen trails
     if (
         contains(
-            ['reportMap', 'reportKeep', 'reportFindFirst', 'reportCombine'],
+            ['reportMap', 'reportKeep', 'reportFindFirst', 'reportCombine',"reportSort","reportGroup"],
             this.selector
         )
     ) {
@@ -3684,7 +3684,9 @@ BlockMorph.prototype.userMenu = function () {
             reportMap : 'reportAtomicMap',
             reportKeep : 'reportAtomicKeep',
             reportFindFirst: 'reportAtomicFindFirst',
-            reportCombine : 'reportAtomicCombine'
+            reportCombine : 'reportAtomicCombine',
+			reportSort: : "reportAtomicSort",
+			reportGroup: "reportAtomicGroup"
         };
         menu.addItem(
             'compile',
@@ -3698,7 +3700,9 @@ BlockMorph.prototype.userMenu = function () {
                 'reportAtomicMap',
                 'reportAtomicKeep',
                 'reportAtomicFindFirst',
-                'reportAtomicCombine'
+                'reportAtomicCombine',
+				"reportAtomicSort",
+				"reportAtomicGroup"
             ],
             this.selector
         )
@@ -3707,7 +3711,10 @@ BlockMorph.prototype.userMenu = function () {
             reportAtomicMap : 'reportMap',
             reportAtomicKeep : 'reportKeep',
             reportAtomicFindFirst: 'reportFindFirst',
-            reportAtomicCombine : 'reportCombine'
+            reportAtomicCombine : 'reportCombine',
+			reportAtomicSort : "reportSort",
+			reportAtomicGroup : "reportGroup"
+			
         };
         menu.addItem(
             'uncompile',
@@ -14884,8 +14891,7 @@ MultiArgMorph.prototype.is3ArgRingInHOF = function () {
                         'reportAtomicKeep',
                         'reportFindFirst',
                         'reportAtomicFindFirst',
-						"reportApplies",
-						"reportAtomicGroup"
+						"reportApplies"
                     ],
                     block.selector
                 );
