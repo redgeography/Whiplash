@@ -2447,7 +2447,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
 		reportGroup: {
 		type: "reporter",
 		category: "lists",
-		spec: "group %l by %repRing
+		spec: "group %l by %repRing"
 		},
 		reportSort: {
 		type: "reporter",
