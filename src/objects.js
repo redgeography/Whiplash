@@ -2452,7 +2452,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
 		reportSort: {
 		type: "reporter",
 		category: "lists",
-		spec: "sort %l ordering with %repRing"
+		spec: "sort %l ordering with %predRing"
 		},
         doForEach: {
             type: 'command',
