@@ -7739,7 +7739,7 @@ ReporterBlockMorph.prototype.isUnevaluated = function () {
     var spec = this.getSlotSpec();
     return spec === '%anyUE' ||
         spec === '%boolUE' ||
-        spec === '%listUE';
+        spec === "%listUE" || spec === "%f";
 };
 
 ReporterBlockMorph.prototype.isLocked = function () {
