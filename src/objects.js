@@ -2266,6 +2266,52 @@ SpriteMorph.prototype.primitiveBlocks = function () {
     )
 )`
         },
+		reportValueCopiedToDimensions: {
+			type: "reporter",
+			category: "lists",
+			spec: "copy %s to %nums",
+			defaults: [null,[10,2]],
+			src: `(
+    (prim t reportValueCopiedToDimensions value dimensions) 
+    (if 
+        (reportListBoolean 
+            (get dimensions) [empty]
+        ) 
+        (report 
+            (get value)
+        )
+    ) 
+    (var result first rest) 
+    (set result 
+        (list)
+    ) 
+    (set first 
+        (item [last] 
+            (get dimensions)
+        )
+    ) 
+    (set rest 
+        (reportAllButOfList [last] 
+            (get dimensions)
+        )
+    ) 
+    (warp 
+        (repeat 
+            (get first) 
+            (add 
+                (get value) 
+                (get result)
+            )
+        )
+    ) 
+    (report 
+        (reportValueCopiedToDimensions 
+            (get result) : 
+            (get rest)
+        )
+    )
+)`
+		}
     /*
         reportSlice: { // currently not in use
             type: 'reporter',
@@ -4330,6 +4376,7 @@ SpriteMorph.prototype.blockTemplates = function (
         blocks.push('-');
 		blocks.push(block("reportReshape"));
 		blocks.push(block("reportResize"));
+		blocks.push(block("reportValueCopiedToDimensions"));
 		blocks.push("-");
         blocks.push(block('reportConcatenatedLists'));
         blocks.push(block('reportCrossproduct'));
@@ -11888,6 +11935,7 @@ StageMorph.prototype.blockTemplates = function (
         blocks.push('-');
 		blocks.push(block("reportReshape"));
 		blocks.push(block("reportResize"));
+        blocks.push(block("reportValueCopiedToDimensions"));
 		blocks.push("-");
         blocks.push(block('reportConcatenatedLists'));
         blocks.push(block('reportCrossproduct'));
