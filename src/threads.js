@@ -2888,15 +2888,38 @@ Process.prototype.reportShuffled = function (data) {
 
 // Process non-HOF list primitives
 
-Process.prototype.reportNumbers = function (start, end) {
-    // hyper-dyadic
+Process.prototype.reportNumbers = function (start, end, type) {
+    let fn;
+	switch (this.inputOption(type.at(1)) {
+		case "ascending":
+			fn = this.reportBasicNumbersAscending;
+			break;
+		case "descending":
+			fn = this.reportBasicNumbersDescending;
+			break;
+		default:
+			fn = this.reportBasicNumbers;
+			break;
+	};
     return this.hyper(
-        (strt, stp) => this.reportBasicNumbers(strt, stp),
+        ((strt, stp) => fn(strt, stp)),
         start,
         end
     );
 };
-
+Process.prototype.reportBasicNumbersAscending = function(start, end) {
+	this.assertType(start, "number");
+	this.assertType(end, "number");
+	if (+start > +end) {return new List();};
+	return new List([+start, ...this.reportBasicNumbersAscending(+start + 1, end).itemsArray()]);
+    };
+Process.prototype.reportBasicNumbersDescending = function(start, end) {
+	// just a modified version of the above. ˙u˙
+	this.assertType(start, "number");
+	this.assertType(end, "number");
+	if (+start < +end) {return new List();};
+	return new List([+start, ...this.reportBasicNumbersDescending(+start - 1, end).itemsArray()]);
+    };
 Process.prototype.reportBasicNumbers = function (start, end) {
     // answer a new arrayed list containing an linearly ascending progression
     // of integers beginning at start to end.
