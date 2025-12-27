@@ -2525,7 +2525,21 @@ if (!(list instanceof List)) {
 list = new List([list]);
 };
 return list.resize(length);
-}
+};
+Process.prototype.reportValueCopiedToDimensions = function(value,dimensions){
+this.assertType(dimensions, "list");
+if (dimensions.isEmpty()) {
+return value;
+};
+let dimArray = dimensions.itemsArray().slice();
+let last = dimArray.pop();
+this.assertType(last, "number");
+let result = [];
+for (let i = 0; i < +last; i++){
+result[i] = value;
+};
+return this.reportValueCopiedToDimensions(new List(result),new List(dimArray)); // recursive
+};
 Process.prototype.reportSlice = function (list, indices) {
     // currently not in use
     this.assertType(list, 'list');
