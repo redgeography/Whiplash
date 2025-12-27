@@ -2311,7 +2311,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
         )
     )
 )`
-		}
+		},
     /*
         reportSlice: { // currently not in use
             type: 'reporter',
