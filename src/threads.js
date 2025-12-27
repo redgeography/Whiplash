@@ -2890,7 +2890,7 @@ Process.prototype.reportShuffled = function (data) {
 
 Process.prototype.reportNumbers = function (start, end, type) {
     let fn;
-	switch (this.inputOption(type.at(1)) {
+	switch (this.inputOption(type.at(1))) {
 		case "ascending":
 			fn = this.reportBasicNumbersAscending;
 			break;
