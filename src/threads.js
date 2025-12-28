@@ -4205,7 +4205,15 @@ Process.prototype.reportPipe = function (value, reporterList) {
     this.pushContext();
     this.evaluate(next, new List([current]));
 };
-
+Process.prototype.reportHyperZip = function(op, a, aRank, b, bRank) {
+return this.hyperZip(
+	(a,b) => invoke(op, new List([a,b]) ),
+	a,
+	b,
+	aRank,
+	bRank
+);
+}
 // Process interpolated primitives
 
 Process.prototype.doWait = function (secs) {
