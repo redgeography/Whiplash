@@ -2488,7 +2488,7 @@ SpriteMorph.prototype.primitiveBlocks = function () {
 		category: "lists",
 		spec: "sort %l ordering with %predRing",
 		src: `(
-    (prim t reportSort) 
+    (prim t reportSort data ring) 
     (if 
         (reportListBoolean 
             (get data) [empty]
