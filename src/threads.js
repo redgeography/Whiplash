@@ -5683,9 +5683,19 @@ Process.prototype.reportBasicMonadic = function (fname, n) {
 };
 
 // Process - non hyper-monadic text primitives
-
-Process.prototype.reportTextFunction = function (fname, string) {
-    // currently in dev mode only, not hyper-monadic
+Process.prototype.reportTextFunction = function(type, value){
+	// hyper dyadic, except for the "stringify" option
+	// without CALL with inputs though, it's pretty much hyper monadic though
+	if (this.inputOption("type") === "stringify") {
+		return isNil(value) ? "" : `${value}`;
+	};
+	return this.hyper(
+		(a,b) => this.reportBasicTextFunction(a, b),
+		type,
+		value
+		)
+};
+Process.prototype.reportBasicTextFunction = function (fname, string) {
     var x = (isNil(string) ? '' : string).toString(),
         result = x;
 
