@@ -221,93 +221,25 @@ SpriteMorph.prototype.primitiveBlocks = function () {
                 'zip %repRing inputs: %br %s leaf-rank %n %br %s leaf-rank %n',
             code: 'zip',
             src: `(
-    (prim t reportHyperZip fun a a-rank b b-rank) 
-    (ifElse 
-        (> 
-            (data [rank] 
-                (get a)
-            ) 
-            (get a-rank)
-        ) 
-        (ifElse 
-            (> 
-                (data [rank] 
-                    (get b)
-                ) 
-                (get b-rank)
-            ) 
-            (report 
-                (map 
-                    (ring 
-                        (zip 
-                            (get fun) 
-                            (item nil 
-                                (get a)
-                            ) 
-                            (get a-rank) 
-                            (item nil 
-                                (get b)
-                            ) 
-                            (get b-rank)
-                        )
-                    ) 
-                    (range 1 
-                        (min 
-                            (data [length] 
-                                (get a)
-                            ) 
-                            (data [length] 
-                                (get b)
-                            )
-                        )
-                    )
-                )
-            ) 
-            (report 
-                (map 
-                    (ring 
-                        (zip 
-                            (get fun) nil 
-                            (get a-rank) 
-                            (get b) 
-                            (get b-rank)
-                        )
-                    ) 
-                    (get a)
-                )
-            )
-        ) 
-        (ifElse 
-            (> 
-                (data [rank] 
-                    (get b)
-                ) 
-                (get b-rank)
-            ) 
-            (report 
-                (map 
-                    (ring 
-                        (zip 
-                            (get fun) 
-                            (get a) 
-                            (get a-rank) nil 
-                            (get b-rank)
-                        )
-                    ) 
-                    (get b)
-                )
-            ) 
-            (report 
-                (call 
-                    (get fun) 
-                    (get a) 
-                    (get b)
-                )
-            )
-        )
-    )
-)`
-        },
+                ifElse (> (data [rank] (get a)) (get a-rank))
+                    (ifElse (> (data [rank] (get b)) (get b-rank))
+                        (report (map (ring
+                            (zip (get fun)
+                                (item nil (get a)) (get a-rank)
+                                (item nil (get b)) (get b-rank)))
+                            (range 1 (min (data [length] (get a))
+                                (data [length] (get b))))))
+                        (report (map (ring
+                            (zip (get fun)
+                                nil (get a-rank) (get b) (get b-rank)))
+                            (get a))))
+                    (ifElse (> (data [rank] (get b)) (get b-rank))
+                        (report (map (ring
+                            (zip (get fun)
+                                (get a) (get a-rank) nil (get b-rank)))
+                            (get b)))
+                        (report (call (get fun) (get a) (get b))))
+                fun a a-rank b b-rank)`        },
 
         // Motion
         forward: {
@@ -2735,8 +2667,24 @@ SpriteMorph.prototype.primitiveBlocks = function () {
 
 SpriteMorph.prototype.initBlocks = function () {
     SpriteMorph.prototype.blocks = this.primitiveBlocks();
+	this.initHyperZip();
 };
+SpriteMorph.prototype.initHyperZip = function () {
+    var info = SpriteMorph.prototype.blocks.reportHyperZip,
+        def = SpriteMorph.prototype.customBlockDefinitionFor('reportHyperZip'),
+        proc = new Process(null, this.parentThatIsA(StageMorph));
 
+    def.primitive = false;
+    info.definition = def;
+    proc.pushContext();
+    def.setBlockDefinition(proc.assemble(proc.parseCode(info.src)));
+};
+SpriteMorph.prototype.hasCustomizedPrimitives = function () {
+    return Object.keys(this.blocks).some(selector =>
+        selector !== 'reportHyperZip' &&
+            this.blocks[selector].definition instanceof CustomBlockDefinition
+    );
+};
 SpriteMorph.prototype.customizeBlocks = function () {
     // generate custom block definition headers for all block descriptions
     // in the blocks dictionary - experimental for v10
