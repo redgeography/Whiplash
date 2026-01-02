@@ -832,7 +832,7 @@ List.prototype.reshape = function (dimensions) {
     size, trg;
 
     // if no dimensions, report a scalar
-    if (dimensions.isEmpty()) {return src[0]; }
+    if (dimensions.isEmpty()) {return isNil(src[0]) ? "" : src[0]; }
 
     size = Math.ceil(dimensions.itemsArray().reduce((a, b) => Math.ceil(a) * Math.ceil(b)));
 
@@ -872,7 +872,8 @@ List.prototype.resize = function(length){
     return result;
 };
 List.prototype.fillDimensionsFor = function (dimensions, leafCount) {
-    // private - answer a copy of the dimensions list with all zeroish
+    // Deprecated in favor of the old semantics 
+	// private - answer a copy of the dimensions list with all zeroish
     // values adjusted to accomodate the given overall leaf count from
     // left to right, e.g. for leaf count of 10 the given dimensions
     // (0,3) become (4,3)
