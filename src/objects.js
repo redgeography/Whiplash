@@ -2486,7 +2486,89 @@ SpriteMorph.prototype.primitiveBlocks = function () {
 		reportSort: {
 		type: "reporter",
 		category: "lists",
-		spec: "sort %l ordering with %predRing"
+		spec: "sort %l ordering with %predRing",
+		src: `(
+    (prim t reportSort) 
+    (if 
+        (reportListBoolean 
+            (get data) [empty]
+        ) 
+        (report 
+            (list)
+        ) 
+        (= 
+            (data [length] 
+                (get data)
+            ) 1
+        ) 
+        (report 
+            (list 
+                (item 1 
+                    (get data)
+                )
+            )
+        )
+    ) 
+    (var 1st 2nd) 
+    (set 1st 
+        (list)
+    ) 
+    (set 2nd 
+        (list)
+    ) 
+    (warp 
+        (for i 1 
+            (- 
+                (data [length] 
+                    (get data)
+                ) 1
+            ) 
+            (ifElse 
+                (call 
+                    (get ring) 
+                    (item 
+                        (get i) 
+                        (get data)
+                    ) 
+                    (item [last] 
+                        (get data)
+                    )
+                ) 
+                (add 
+                    (item 
+                        (get i) 
+                        (get data)
+                    ) 
+                    (get 1st)
+                ) 
+                (add 
+                    (item 
+                        (get i) 
+                        (get data)
+                    ) 
+                    (get 2nd)
+                )
+            )
+        )
+    ) 
+    (report 
+        (append 
+            (reportSort 
+                (get 1st) 
+                (get ring)
+            ) 
+            (list 
+                (item [last] 
+                    (get data)
+                )
+            ) 
+            (reportSort 
+                (get 2nd) 
+                (get ring)
+            )
+        )
+    )
+)`
 		},
         doForEach: {
             type: 'command',
