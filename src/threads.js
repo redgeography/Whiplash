@@ -5686,7 +5686,7 @@ Process.prototype.reportBasicMonadic = function (fname, n) {
 Process.prototype.reportTextFunction = function(type, value){
 	// hyper dyadic, except for the "stringify" option
 	// without CALL with inputs though, it's pretty much hyper monadic though
-	if (this.inputOption("type") === "stringify") {
+	if (this.inputOption(type) === "stringify") {
 		return isNil(value) ? "" : `${value}`;
 	};
 	return this.hyper(
