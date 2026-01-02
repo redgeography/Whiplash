@@ -828,41 +828,37 @@ List.prototype.reshape = function (dimensions) {
     // truncate excess elements, if any.
     // pad with (repetitions of) existing elements
     var src = this.ravel().itemsArray(),
-        dim = this.fillDimensionsFor(dimensions, src.length),
-        i = 0,
-        size, trg;
+	i = 0,
+    size, trg;
 
     // if no dimensions, report a scalar
-    if (dim.isEmpty()) {return src[0]; }
+    if (dimensions.isEmpty()) {return src[0]; }
 
-    size = Math.ceil(
-        dim.itemsArray().reduce((a, b) => Math.ceil(a) * Math.ceil(b))
-    );
-    if (size === Infinity) {return new List(); }
+    size = Math.ceil(dimensions.itemsArray().reduce((a, b) => Math.ceil(a) * Math.ceil(b)));
 
     // make sure the items count matches the specified target dimensions
     if (size < src.length) {
         // truncate excess elements from the source
         trg = src.slice(0, size);
     } else {
-        if (size > src.length && dim.length() > 2 && size > 1000000) {
+        if (size > src.length && dimensions.length() > 2 && size > 1000000) {
             // limit usage of reshape to grow to a maximum size of 1MM rows
             // in higher dimensions to prevent accidental dimension overflow
             throw new Error('exceeding the size limit for reshape');
-        }
+        };
         // pad the source by repeating its existing elements
         trg = src.slice();
         while (trg.length < size) {
             if (i >= src.length) {
                 i = 0;
-            }
+            };
             trg.push(src[i]);
             i += 1;
-        }
-    }
+        };
+    };
 
     // fold the doctored source into the specified dimensions
-    return new List(trg).folded(dim);
+    return new List(trg).folded(dimensions);
 };
 List.prototype.resize = function(length){
     let array = this.itemsArray();
@@ -874,7 +870,7 @@ List.prototype.resize = function(length){
       }
     }
     return result;
-}
+};
 List.prototype.fillDimensionsFor = function (dimensions, leafCount) {
     // private - answer a copy of the dimensions list with all zeroish
     // values adjusted to accomodate the given overall leaf count from
