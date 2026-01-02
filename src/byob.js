@@ -1185,7 +1185,8 @@ CustomBlockDefinition.prototype.isBootstrapped = function () {
 
 CustomBlockDefinition.prototype.isQuasiPrimitive = function () {
     return this.isBootstrapped() &&
-        (this.primitive === this.selector) &&
+        (this.primitive === this.selector ||
+            this.selector === 'reportHyperZip') &&
         this.codeMapping !== null;
 };
 
