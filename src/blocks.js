@@ -863,7 +863,8 @@ SyntaxElementMorph.prototype.labelParts = {
             'XML escape' : ['XML escape'],
             'XML unescape' : ['XML unescape'],
             'JS escape' : ['JS escape'],
-            'hex sha512 hash' : ['hex sha512 hash']
+            'hex sha512 hash' : ['hex sha512 hash'],
+			"stringify" : ["stringify"]
         }
     },
     '%stopChoices': {
