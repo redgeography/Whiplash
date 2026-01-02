@@ -1939,7 +1939,6 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             defaults: [5]
         },
         reportTextFunction: { // only in dev mode - experimental
-            dev: true,
             type: 'reporter',
             category: 'operators',
             spec: '%txtfun of %s',
@@ -4279,6 +4278,8 @@ SpriteMorph.prototype.blockTemplates = function (
         blocks.push('-');
         blocks.push(block('reportUnicode'));
         blocks.push(block('reportUnicodeAsLetter'));
+		blocks.push("-");
+		blocks.push(block("reportTextFunction"));
         blocks.push('-');
         blocks.push(block('reportIsA'));
 		blocks.push(block("reportTypeOf"));
@@ -4291,13 +4292,6 @@ SpriteMorph.prototype.blockTemplates = function (
             if (Process.prototype.enableCompiling) {
                 blocks.push(block('reportCompiled'));
             }
-        }
-        // for debugging: ///////////////
-        if (devMode) {
-            blocks.push('-');
-            blocks.push(this.devModeText());
-            blocks.push('-');
-            blocks.push(block('reportTextFunction'));
         }
 
     } else if (category === 'variables') {
@@ -11844,7 +11838,10 @@ StageMorph.prototype.blockTemplates = function (
         blocks.push('-');
         blocks.push(block('reportUnicode'));
         blocks.push(block('reportUnicodeAsLetter'));
+		blocks.push("-");
+		blocks.push(block("reportTextFunction"));
         blocks.push('-');
+        blocks.push(block('reportIsA'));
         blocks.push(block('reportIsA'));
 		blocks.push(block("reportTypeOf"));
 		blocks.push("-");
@@ -11856,14 +11853,6 @@ StageMorph.prototype.blockTemplates = function (
             if (Process.prototype.enableCompiling) {
                 blocks.push(block('reportCompiled'));
             }
-        }
-
-        // for debugging: ///////////////
-        if (this.world().isDevMode) {
-            blocks.push('-');
-            blocks.push(this.devModeText());
-            blocks.push('-');
-            blocks.push(block('reportTextFunction'));
         }
 
     }
