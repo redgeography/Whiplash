@@ -11546,7 +11546,7 @@ InputSlotMorph.prototype.inputSlotsMenu = function () {
         blockEditor.prototypeSlots().forEach((value, key) => {
             let info = SyntaxElementMorph.prototype.labelParts[value[0]];
             if (value[0].startsWith('%mult') ||
-                (info && ['input', 'boolean'].includes(info.type))
+                (info && ['input', 'boolean',"color"].includes(info.type))
             ) {
                 dict[key] = key;
             }
