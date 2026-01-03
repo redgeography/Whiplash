@@ -13961,7 +13961,7 @@ if (this.parent instanceof MultiArgMorph) {
         isString(clr) && clr.length > 10 ? Color.fromString(clr)
             : (clr instanceof Color ? clr : new Color(145, 26, 68))
     );
-	 if (block.isCustomBlock) {block.fireSlotEditedEvent(properInput);};
+	 if (!!block?.isCustomBlock) {block.fireSlotEditedEvent(properInput);};
 };
 
 // ColorSlotMorph  color sensing:
