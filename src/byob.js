@@ -2508,6 +2508,7 @@ CustomReporterBlockMorph.prototype.alternatives
 
 // CustomHatBlockMorph inherits from HatBlockMorph:
 
+
 CustomHatBlockMorph.prototype = new HatBlockMorph();
 CustomHatBlockMorph.prototype.constructor = CustomHatBlockMorph;
 CustomHatBlockMorph.uber = HatBlockMorph.prototype;
@@ -2515,7 +2516,6 @@ CustomHatBlockMorph.uber = HatBlockMorph.prototype;
 // CustomHatBlockMorph shared settings:
 
 CustomHatBlockMorph.prototype.isCustomBlock = true;
-
 // CustomHatBlockMorph instance creation:
 
 function CustomHatBlockMorph(definition, isProto) {
