@@ -13951,17 +13951,11 @@ ColorSlotMorph.prototype.setContents = function (clr) {
 };
 
 ColorSlotMorph.prototype.setColor = function (clr) {
-let block = this.parentThatIsA(BlockMorph);
-let properInput = this;
-if (this.parent instanceof MultiArgMorph) {
-	properInput = this.parent;
-};
 	ColorSlotMorph.uber.setColor.call(
         this,
         isString(clr) && clr.length > 10 ? Color.fromString(clr)
             : (clr instanceof Color ? clr : new Color(145, 26, 68))
     );
-	 if (!!block?.isCustomBlock) {block.fireSlotEditedEvent(properInput);};
 };
 
 // ColorSlotMorph  color sensing:
