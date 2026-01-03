@@ -1843,6 +1843,12 @@ Process.prototype.doSetSlot = function(name, value) {
             slot.setContents(value.toString());
         } else if (slot instanceof BooleanSlotMorph) {
             slot.setContents(value);
+		} else if (slot instanceof ColorSlotMorph) {
+			let cast = this.castColor(value);
+			if (cast instanceof List) {
+				cast = cast.reshape(new List());
+			};
+			slot.setColor(cast instanceof Color ? cast : new Color);
         } else if (slot instanceof MultiArgMorph) {
             if (!(value instanceof List)) {
                 value = new List([value]);
