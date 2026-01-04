@@ -1912,11 +1912,11 @@ SpriteMorph.prototype.primitiveBlocks = function () {
 			spec: "%n as binary",
 			defaults: [5]
 		},
-		reportBinaryFromDecimal: {
+		reportBinaryToDecimal: {
 			type: "reporter",
 			category: "operators",
 			spec: "binary %n as number",
-			defaults: ["101"]
+			defaults: [101]
 		},
         reportIsA: {
             type: 'predicate',
@@ -4361,7 +4361,7 @@ SpriteMorph.prototype.blockTemplates = function (
         blocks.push(block('reportVariadicGreaterThan'));
         blocks.push('-');
         blocks.push(block("reportBinary"));
-		blocks.push(block("reportBinaryFromDecimal"));
+		blocks.push(block("reportBinaryToDecimal"));
 		blocks.push("-");
         blocks.push(block('reportVariadicAnd'));
         blocks.push(block('reportVariadicOr'));
@@ -11924,7 +11924,7 @@ StageMorph.prototype.blockTemplates = function (
         blocks.push(block('reportVariadicGreaterThan'));
         blocks.push('-');
 		blocks.push(block("reportBinary"));
-		blocks.push(block("reportBinaryFromDecimal"));
+		blocks.push(block("reportBinaryToDecimal"));
 		blocks.push("-");
         blocks.push(block('reportVariadicAnd'));
         blocks.push(block('reportVariadicOr'));
