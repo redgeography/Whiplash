@@ -5872,6 +5872,7 @@ Process.prototype.reportBasicUnicodeAsLetter = function (num) {
     return String.fromCharCode(code);
 };
 Process.prototype.reportBasicBinary = function (n) {
+this.assertInt(n);
 	return +((+n).toString(2))
 };
 Process.prototype.reportBinary = function (number) {
@@ -5881,7 +5882,8 @@ Process.prototype.reportBinary = function (number) {
 		);
 };
 Process.prototype.reportBasicBinaryToDecimal = function (num) {
-return (+("0b" + num)) + this.binaryFraction(num) // decimal conversion
+this.assertInt(n);
+	return (+("0b" + num))
 };
 Process.prototype.reportBinaryToDecimal = function (number) {
 	return this.hyper(
@@ -5889,6 +5891,13 @@ Process.prototype.reportBinaryToDecimal = function (number) {
 		number
 		);
 };
+Process.prototype.assertInt = function (number) {
+	if (!Number.isInteger(+number)) {
+		throw new Error("expecting an integer but getting " + number);
+	};
+/*
+Commented out for now, this stupid code won't work no matter what I try :(
+
 Process.prototype.binaryFraction = function (n) {
 	// private - used by reportBinaryToDecimal to determine the fraction part of a binary number
 	// as a decimal
@@ -5915,7 +5924,7 @@ Process.prototype.reportTextSplit = function (string, delimiter) {
         delimiter
     );
 };
-
+*/
 Process.prototype.reportBasicTextSplit = function (string, delimiter) {
     var types = ['text', 'number'],
         strType = this.reportTypeOf(string),
