@@ -5892,12 +5892,12 @@ Process.prototype.reportBinaryFromDecimal = function (number) {
 Process.prototype.binaryFraction = function (n) {
 	// private - used by reportBinaryFromDecimal to determine the fraction part of a binary number
 	// as a decimal
-let decPart = String.prototype.slice.call((+n - Math.trunc(n)), 2); // I hate stringifying it...
+let decPart = String.prototype.split.call(n,".")[1]; // I hate stringifying it...
 if (!(+decPart)) {return +decPart;};
 let result = [];
 for (let i = 0; i < decPart.length; i++) {
 	if ((+decPart[i]) > 1) {return NaN;};
-	result.push((+decPart[i]) * (0.5 ** i));
+	result.push((+decPart[i]) * (0.5 ** (i + 1)));
 };
 	return result.reduce((a,b) => a + b);
 };
