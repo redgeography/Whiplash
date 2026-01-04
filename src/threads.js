@@ -5868,10 +5868,39 @@ Process.prototype.reportBasicUnicodeAsLetter = function (num) {
 
     if (String.fromCodePoint) { // support for Unicode in newer browsers.
         return String.fromCodePoint(code);
-    }
+    };
     return String.fromCharCode(code);
 };
-
+Process.prototype.reportBasicBinary = function (n) {
+	return +((+n).toString(2))
+};
+Process.prototype.reportBinary = function (number) {
+	return this.hyper(
+		(x) => this.reportBasicBinary(x),
+		number
+		);
+};
+Process.prototype.reportBasicBinaryFromDecimal = function (num) {
+return (+("0b" + num)) + this.binaryFraction(num) // decimal conversion
+};
+Process.prototype.reportBinaryFromDecimal = function (number) {
+	return this.hyper(
+		(n) => this.reportBasicBinaryFromDecimal(n),
+		number
+		);
+};
+Process.prototype.binaryFraction = function (n) {
+	// private - used by reportBinaryFromDecimal to determine the fraction part of a binary number
+	// as a decimal
+let decPart = String.prototype.slice.call((+n - Math.trunc(n)), 2); // I hate stringifying it...
+if (!(+decPart)) {return +decPart;};
+let result = [];
+for (let i = 0; i < decPart.length; i++) {
+	if ((+decPart[i]) > 1) {return NaN;};
+	result.push((+decPart[i]) * (0.5 ** i));
+};
+	return result.reduce((a,b) => a + b);
+};
 Process.prototype.reportTextSplit = function (string, delimiter) {
     if ((delimiter instanceof Array) && (delimiter[0] === "blocks")) {
         if (isString(string) && '(;'.includes(string.trim()[0])) {
