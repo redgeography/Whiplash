@@ -1906,6 +1906,18 @@ SpriteMorph.prototype.primitiveBlocks = function () {
             defaults: [65],
             code: 'toLetter'
         },
+		reportBinary: {
+			type: "reporter",
+			category: "operators",
+			spec: "%n as binary",
+			defaults: [5]
+		},
+		reportBinaryFromDecimal: {
+			type: "reporter",
+			category: "operators",
+			spec: "binary %n as number",
+			defaults: ["101"]
+		},
         reportIsA: {
             type: 'predicate',
             category: 'operators',
@@ -4348,6 +4360,9 @@ SpriteMorph.prototype.blockTemplates = function (
         blocks.push(block('reportVariadicEquals'));
         blocks.push(block('reportVariadicGreaterThan'));
         blocks.push('-');
+        blocks.push(block("reportBinary"));
+		blocks.push(block("reportBinaryFromDecimal"));
+		blocks.push("-");
         blocks.push(block('reportVariadicAnd'));
         blocks.push(block('reportVariadicOr'));
         blocks.push(block('reportNot'));
@@ -11908,6 +11923,9 @@ StageMorph.prototype.blockTemplates = function (
         blocks.push(block('reportVariadicEquals'));
         blocks.push(block('reportVariadicGreaterThan'));
         blocks.push('-');
+		blocks.push(block("reportBinary"));
+		blocks.push(block("reportBinaryFromDecimal"));
+		blocks.push("-");
         blocks.push(block('reportVariadicAnd'));
         blocks.push(block('reportVariadicOr'));
         blocks.push(block('reportNot'));
@@ -11923,7 +11941,6 @@ StageMorph.prototype.blockTemplates = function (
 		blocks.push("-");
 		blocks.push(block("reportTextFunction"));
         blocks.push('-');
-        blocks.push(block('reportIsA'));
         blocks.push(block('reportIsA'));
 		blocks.push(block("reportTypeOf"));
 		blocks.push("-");
