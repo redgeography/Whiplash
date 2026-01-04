@@ -5882,7 +5882,7 @@ Process.prototype.reportBinary = function (number) {
 		);
 };
 Process.prototype.reportBasicBinaryToDecimal = function (num) {
-this.assertInt(n);
+this.assertInt(num);
 	return (+("0b" + num))
 };
 Process.prototype.reportBinaryToDecimal = function (number) {
