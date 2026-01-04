@@ -5895,6 +5895,7 @@ Process.prototype.assertInt = function (number) {
 	if (!Number.isInteger(+number)) {
 		throw new Error("expecting an integer but getting " + number);
 	};
+};
 /*
 Commented out for now, this stupid code won't work no matter what I try :(
 
