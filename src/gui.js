@@ -91,7 +91,7 @@ modules.gui = '2025-December-12';
 
 // Declarations
 
-var SnapVersion = "";
+var SnapVersion = "12";
 
 var IDE_Morph;
 var ProjectDialogMorph;
@@ -1563,8 +1563,8 @@ IDE_Morph.prototype.createControlBar = function () {
                 ' (' + myself.scene.name + ')' : '';
         name = (myself.getProjectName() || localize('untitled'));
         if (!myself.config.preserveTitle) {
-            document.title = "Snap! " +
-                (myself.getProjectName() ? name : SnapVersion);
+            document.title = "Whiplash! " +
+                (myself.getProjectName() ? name : "A Snap! Mod!");
         }
         txt = new StringMorph(
             prefix + name +  scene + suffix,
