@@ -5911,6 +5911,7 @@ for (let i = 0; i < decPart.length; i++) {
 };
 	return result.reduce((a,b) => a + b);
 };
+*/
 Process.prototype.reportTextSplit = function (string, delimiter) {
     if ((delimiter instanceof Array) && (delimiter[0] === "blocks")) {
         if (isString(string) && '(;'.includes(string.trim()[0])) {
@@ -5925,7 +5926,7 @@ Process.prototype.reportTextSplit = function (string, delimiter) {
         delimiter
     );
 };
-*/
+
 Process.prototype.reportBasicTextSplit = function (string, delimiter) {
     var types = ['text', 'number'],
         strType = this.reportTypeOf(string),
