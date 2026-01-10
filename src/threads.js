@@ -8700,11 +8700,15 @@ Process.prototype.reportBlockAttribute = function (attribute, block) {
 Process.prototype.reportBasicBlockAttribute = function (attribute, block) {
     var choice = this.inputOption(attribute),
         expr, body, slots, data, def, info, loc, cmt, prim;
-    this.assertType(block, ['command', 'reporter', 'predicate', 'hat']);
+   if (!(attribute === "image" && block instanceof BlockMorph)){
+	this.assertType(block, ['command', 'reporter', 'predicate', 'hat']);
+   };
     expr = block.expression;
     switch (choice) {
     case 'label':
         return expr ? expr.abstractBlockSpec() : '';
+	case "spec":
+		return expr?.blockSpec ?? "";
     case 'comment':
         if (block.comment) {
             return block.comment;
@@ -8788,6 +8792,17 @@ Process.prototype.reportBasicBlockAttribute = function (attribute, block) {
         return (expr && expr.isCustomBlock) ? !!expr.isGlobal : true;
     case 'expression':
         return expr instanceof BlockMorph ? expr.fullCopy() : '';
+	case "image":
+		let img = blk.expression.fullCopy?.().fullImage?.();
+		return block instanceof Context ? block.image() : isNil(img) ? "" : new Costume(img, , expr.selector || "script");
+	case "scripts":
+	try {
+	if (!expr.isCustomBlock) return new List();
+	def = expr.isGlobal ? expr.definition : this.blockReceiver().getMethod(expr.blockSpec);
+	return new List(definition.scripts).map((elm) => elm.reify());
+	} catch {
+	return new List();
+	};
     case 'type':
         return ['command', 'reporter', 'predicate', 'hat'].indexOf(
             this.reportTypeOf(block)
@@ -9071,7 +9086,41 @@ Process.prototype.reportBasicBlockAttribute = function (attribute, block) {
             return loc;
         }
         return new List();
-    }
+	case "help":
+			let trimmed = blk.expression.abstractBlockSpec().replaceAll("_", "").replaceAll(" ","");
+			let url;
+			let ide = this.blockReceiver().parentThatIsA(IDE_Morph);
+		if (!this.helpImg) {
+		if (expr.isCustomBlock) {
+			def = expr.isGlobal ? expr.definition : this.blockReceiver().getMethod(expr.blockSpec);
+			if (def.comment) {
+				return def.comment;
+			} else if (["throw","catch"].includes(trimmed)){
+			url = ide.resourceURL("help", trimmed + ".png")
+			} else {
+				return "";
+		} else {
+		url = ide.resourceURL("help", expr.selector + ".png");
+		};
+this.helpImg = new Image();
+this.helpImg.onload = function() {
+	this.helpImg.loaded = true;
+};
+this.helpImg.onerror = function() {
+	this.helpImg.loaded = true;
+	this.helpImg.errored = true;
+};
+this.helpImg.src = url;
+this.helpImg.name = ["throw", "catch"].includes(trimmed) ? trimmed : expr.selector;
+    } else if (this.helpImg.loaded) {
+     if (this.helpImg.errored) {
+		 return "";
+	 };
+	return new Costume(this.helpImg, this.helpImg.name);
+	};
+this.pushContext("doYield");
+this.pushContext();
+	};
     return '';
 };
 
