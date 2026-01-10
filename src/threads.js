@@ -9099,6 +9099,7 @@ Process.prototype.reportBasicBlockAttribute = function (attribute, block) {
 			url = ide.resourceURL("help", trimmed + ".png")
 			} else {
 				return "";
+			};
 		} else {
 		url = ide.resourceURL("help", expr.selector + ".png");
 		};
