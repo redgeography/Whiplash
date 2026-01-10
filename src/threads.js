@@ -8793,13 +8793,13 @@ Process.prototype.reportBasicBlockAttribute = function (attribute, block) {
     case 'expression':
         return expr instanceof BlockMorph ? expr.fullCopy() : '';
 	case "image":
-		let img = blk.expression.fullCopy?.().fullImage?.();
+		let img = expr.fullCopy?.().fullImage?.();
 		return block instanceof Context ? block.image() : isNil(img) ? "" : new Costume(img, expr.selector || "script");
 	case "scripts":
 	try {
 	if (!expr.isCustomBlock) return new List();
 	def = expr.isGlobal ? expr.definition : this.blockReceiver().getMethod(expr.blockSpec);
-	return new List(definition.scripts).map((elm) => elm.reify());
+	return new List(def.scripts).map((elm) => elm.reify());
 	} catch {
 	return new List();
 	};
@@ -9087,7 +9087,7 @@ Process.prototype.reportBasicBlockAttribute = function (attribute, block) {
         }
         return new List();
 	case "help":
-			let trimmed = blk.expression.abstractBlockSpec().replaceAll("_", "").replaceAll(" ","");
+			let trimmed = expr.abstractBlockSpec().replaceAll("_", "").replaceAll(" ","");
 			let url;
 			let ide = this.blockReceiver().parentThatIsA(IDE_Morph);
 		if (!this.helpImg) {
