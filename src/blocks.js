@@ -981,12 +981,16 @@ SyntaxElementMorph.prototype.labelParts = {
 
     '%block': {
         type: 'input',
-        tags: 'read-only', // was also 'static'
+        tags: 'read-only static',
         menu: {
             'label': ['label'],
+			"spec": ["spec"],
             'definition': ['definition'],
+			"scripts": ["scripts"],
             'primitive' : ['primitive'],
+			"image": ["image"],
             'comment': ['comment'],
+			"help": ["help"],
             'category': ['category'],
             'custom?': ['custom?'],
             'global?': ['global?'],
