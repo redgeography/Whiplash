@@ -8794,7 +8794,7 @@ Process.prototype.reportBasicBlockAttribute = function (attribute, block) {
         return expr instanceof BlockMorph ? expr.fullCopy() : '';
 	case "image":
 		let img = blk.expression.fullCopy?.().fullImage?.();
-		return block instanceof Context ? block.image() : isNil(img) ? "" : new Costume(img, , expr.selector || "script");
+		return block instanceof Context ? block.image() : isNil(img) ? "" : new Costume(img, expr.selector || "script");
 	case "scripts":
 	try {
 	if (!expr.isCustomBlock) return new List();
